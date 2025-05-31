@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>رفع قطعة</title>
+</head>
+<body>
+    <h2>رفع قطعة جديدة</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">رفع</button>
+    </form>
+    <a href="{% url 'car_part_list' %}">عرض جميع القطع</a>
+</body>
+</html>
