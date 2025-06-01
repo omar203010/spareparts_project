@@ -22,9 +22,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # تطبيقات إضافية
+    # تطبيقات خارجية
     'cloudinary',
     'cloudinary_storage',
+
+    # تطبيقات المشروع
     'parts',
 ]
 
@@ -39,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# الراوت الرئيسي
+# ملف URLs الرئيسي
 ROOT_URLCONF = 'config.urls'
 
 # إعدادات القوالب
@@ -62,7 +64,7 @@ TEMPLATES = [
 # إعدادات WSGI
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# إعدادات قواعد البيانات
+# إعدادات قاعدة البيانات
 if DEBUG:
     DATABASES = {
         'default': {
@@ -86,7 +88,7 @@ else:
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Cloudinary لرفع الوسائط
+# إعدادات الوسائط باستخدام Cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
@@ -95,10 +97,9 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
 
-# إعداد MEDIA_URL حتى مع Cloudinary
 MEDIA_URL = '/media/'
 
-# إعدادات أمان إضافية للإنتاج
+# إعدادات الأمان للإنتاج
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
