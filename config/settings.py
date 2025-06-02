@@ -11,8 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # إعدادات الأمان
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-dev-key")
 DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
-
+DJANGO_ALLOWED_HOSTS = os.getenv("spareparts-project.onrender.com,localhost,127.0.0.1").split(",")
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
@@ -49,7 +48,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,6 +87,7 @@ else:
 # إعدادات الملفات الثابتة
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # إعدادات الوسائط باستخدام Cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -100,7 +100,7 @@ CLOUDINARY_STORAGE = {
 
 MEDIA_URL = '/media/'
 
-# إعدادات الأمان للإنتاج
+# إعدادات الأمان في حالة الإنتاج
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
@@ -108,6 +108,7 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+    X_FRAME_OPTIONS = "DENY"
 
 # الحقل الافتراضي للنماذج
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
