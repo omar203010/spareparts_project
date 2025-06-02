@@ -33,7 +33,7 @@ INSTALLED_APPS = [
 # الميدلوير
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # لتقديم static files بكفاءة
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # تقديم static files بكفاءة
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

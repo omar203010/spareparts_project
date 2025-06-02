@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>قائمة القطع</title>
+    <title>قطع الغيار</title>
 </head>
 <body>
-    <h2>جميع القطع</h2>
+    <h1>قائمة قطع الغيار</h1>
     <ul>
         {% for part in parts %}
             <li>
-                {{ part.name }}<br>
-                <img src="{{ part.image.url }}" alt="{{ part.name }}" width="200">
+                <strong>{{ part.name }}</strong><br>
+                {% if part.image_url %}
+                    <img src="{{ part.image_url }}" alt="صورة القطعة" width="200">
+                {% endif %}
+                <br>
+                <a href="{% url 'edit_car_part' part.pk %}">تعديل</a> |
+                <a href="{% url 'delete_car_part' part.pk %}">حذف</a>
             </li>
+        {% empty %}
+            <li>لا توجد قطع</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'upload_car_part' %}">رفع قطعة جديدة</a>
 </body>
 </html>
